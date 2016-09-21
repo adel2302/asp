@@ -26,6 +26,18 @@
     </div>
   </div>
 </div>
+
+<%= f.fields_for :users do |u| %>
+      <div class="field">
+        <%= u.label :email%></br>
+        <%= u.text_field :email%>
+      </div>
+      <div class="field">
+        <%= u.label :password%></br>
+        <%= u.password_field :password, autocomplete: "off" %>
+      </div>
+    <% end %>
+
 <br>
 <div class="row">
   <div class="col-xs-12 col-md-3">

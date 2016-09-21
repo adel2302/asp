@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:edit, :update, :destroy]
+  before_action :check_is_admin, only: [:index, :new, :edit, :destroy]
 
   # GET /companies
   # GET /companies.json
@@ -10,6 +11,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    @company.users.build
   end
 
   # GET /companies/1/edit
@@ -52,6 +54,12 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def check_is_admin
+    if current_user.role != "admin"
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
@@ -60,6 +68,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :phone_number)
+      params.require(:company).permit(:name, :phone_number, users_attributes: [:id, :email, :password])
     end
 end
