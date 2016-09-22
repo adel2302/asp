@@ -19,3 +19,15 @@
 input {
   width: 100%;
 }
+
+.navbar-toggler {
+  visibility:hidden;
+}
+
+@media only screen and (max-width:750px) {
+ .navbar-toggler {
+  visibility:visible;
+  margin-left: 6em;
+  margin-top: 0.5em;
+  }
+}
