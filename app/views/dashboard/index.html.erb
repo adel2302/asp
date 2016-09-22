@@ -1,3 +1,13 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
-<%= link_to 'Companies', companies_path %>
+<% if user_signed_in? %>
+  <% if current_user.role == "admin" %>
+    <h1>Dashboard#index</h1>
+    <p>Find me in app/views/dashboard/index.html.erb</p>
+    <%= link_to 'Companies', companies_path %> | <%= link_to 'New Driver', new_driver_path %>
+  <% else %>
+  <div>
+    <div class="col-md-10">
+      <%= render  partial: 'drivers/index', locals: {drivers: @drivers} %>
+    </div>
+  </div>
+  <% end %>
+<% end %>
