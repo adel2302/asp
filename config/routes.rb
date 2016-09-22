@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users,
+              except: [:registrations, :destroy]
   resources :companies
   root 'dashboard#index'
 
