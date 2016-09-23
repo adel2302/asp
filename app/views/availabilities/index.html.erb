@@ -1,0 +1,36 @@
+<h1>Listing Availabilities</h1>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Hour start</th>
+          <th>Hour end</th>
+          <th>Driver</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @availabilities.each do |e| %>
+          <% e.each do |b| %>
+          <tr>
+            <td><%= b.date.strftime("%d %B %y") %></td>
+            <td><%= b.hour_start.strftime("%H:%M") %></td>
+            <td><%= b.hour_end.strftime("%H:%M")%></td>
+            <td><%= b.driver.first_name %></td>
+            <td><%= link_to 'Edit', edit_availability_path(b) %></td>
+            <td><%= link_to 'Destroy', b, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Availability', new_availability_path %>
