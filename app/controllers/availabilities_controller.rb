@@ -4,12 +4,17 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   # GET /availabilities.json
   def index
-    @availabilities =  current_user.company.drivers.map {|driver| driver.availabilities}
+    if current_user.role != 'admin'
+      @availabilities =  current_user.company.drivers.map {|driver| driver.availabilities}
+    else
+      redirect_to root_path, notice: 'Access not permitted.'
+    end
   end
 
   # GET /availabilities/1
   # GET /availabilities/1.json
   def show
+    redirect_to root_path, notice: 'Access not permitted.'
   end
 
   # GET /availabilities/new

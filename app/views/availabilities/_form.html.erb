@@ -11,23 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date, order: [:day, :month, :year] %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :date %><br>
+      <%= f.date_select :date, order: [:day, :month, :year] %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :hour_start %><br>
-    <%= f.time_select :hour_start, ignore_date: true %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :hour_start %><br>
+      <%= f.time_select :hour_start, ignore_date: true %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :hour_end %><br>
-    <%= f.time_select :hour_end, ignore_date: true %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :hour_end %><br>
+      <%= f.time_select :hour_end, ignore_date: true %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :driver_id %><br>
-    <%= f.collection_select :driver_id, current_user.company.drivers.all, :id, :first_name %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :driver_id %><br>
+      <%= f.collection_select :driver_id, current_user.company.drivers.all, :id, :first_name %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </div>
   </div>
 <% end %>
