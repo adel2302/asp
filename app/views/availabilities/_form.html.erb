@@ -1,0 +1,33 @@
+<%= form_for(@availability) do |f| %>
+  <% if @availability.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
+
+      <ul>
+      <% @availability.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date, order: [:day, :month, :year] %>
+  </div>
+  <div class="field">
+    <%= f.label :hour_start %><br>
+    <%= f.time_select :hour_start, ignore_date: true %>
+  </div>
+  <div class="field">
+    <%= f.label :hour_end %><br>
+    <%= f.time_select :hour_end, ignore_date: true %>
+  </div>
+  <div class="field">
+    <%= f.label :driver_id %><br>
+    <%= f.collection_select :driver_id, current_user.company.drivers.all, :id, :first_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922194831) do
+ActiveRecord::Schema.define(version: 20160923000449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.date     "date"
+    t.time     "hour_start"
+    t.time     "hour_end"
+    t.integer  "driver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "availabilities", ["driver_id"], name: "index_availabilities_on_driver_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -55,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160922194831) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "availabilities", "drivers"
   add_foreign_key "drivers", "companies"
   add_foreign_key "users", "companies"
 end

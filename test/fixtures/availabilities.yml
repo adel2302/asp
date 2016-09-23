@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-09-23
+  hour_start: 2016-09-23 02:04:49
+  hour_end: 2016-09-23 02:04:49
+  driver_id: 
+
+two:
+  date: 2016-09-23
+  hour_start: 2016-09-23 02:04:49
+  hour_end: 2016-09-23 02:04:49
+  driver_id: 
