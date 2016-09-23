@@ -1,18 +1,30 @@
-<h1>Dashboard</h1>
+<div class="row">
+  <div class="col-xs-12 col-md-3 col-md-offset-5">
+    <h1>Dashboard</h1>
+  </div>
+</div>
 <% if user_signed_in? %>
   <% if current_user.role == "admin" %>
-    <%= link_to 'Companies', companies_path %> | <%= link_to 'New Company', new_company_path %>
-    <h1>Listing Availabilities</h1>
     <div class="row">
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-3">
+        <%= link_to 'Companies', companies_path, class: 'btn btn-primary' %> | <%= link_to 'New Company', new_company_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+
+      </div>
+      <div class="col-xs-12 col-md-7">
+        <h2>Listing Drivers Availabilities</h2>
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
               <th>Date</th>
               <th>Hour start</th>
               <th>Hour end</th>
+              <th>Company</th>
               <th>Driver</th>
-              <th colspan="3"></th>
+              <th>Driver phone number</th>
             </tr>
           </thead>
 
@@ -22,9 +34,9 @@
                 <td><%= availability.date.strftime("%d %B %y") %></td>
                 <td><%= availability.hour_start.strftime("%H:%M") %></td>
                 <td><%= availability.hour_end.strftime("%H:%M")%></td>
+                <td><%= availability.driver.company.name %></td>
                 <td><%= availability.driver.first_name %></td>
-                <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
-                <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= availability.driver.phone_number %></td>
               </tr>
             <% end %>
           </tbody>
@@ -33,10 +45,9 @@
     </div>
   <% else %>
   <div>
-    <div class="col-md-10">
+    <div class="col-xs-12 col-md-10">
       <%= render  partial: 'drivers/index', locals: {drivers: @drivers} %>
     </div>
   </div>
-  <%= link_to 'New Availability', new_availability_path %>
   <% end %>
 <% end %>

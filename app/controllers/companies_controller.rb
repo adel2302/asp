@@ -14,6 +14,9 @@ class CompaniesController < ApplicationController
     @company.users.build
   end
 
+  def show
+    redirect_to root_path, notice: 'Access not permitted.'
+  end
   # GET /companies/1/edit
   def edit
   end
@@ -56,7 +59,7 @@ class CompaniesController < ApplicationController
 
   def check_is_admin
     if current_user.role != "admin"
-      redirect_to root_path
+      redirect_to root_path, notice: 'Access not permitted.'
     end
   end
 

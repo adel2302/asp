@@ -4,12 +4,18 @@ class DriversController < ApplicationController
   # GET /drivers
   # GET /drivers.json
   def index
-    @drivers = current_user.company.drivers(params[:id])
+    if current_user.role != 'admin'
+      @drivers = current_user.company.drivers(params[:id])
+      redirect_to root_path, notice: 'Access not permitted.'
+    else
+      redirect_to root_path, notice: 'Access not permitted.'
+    end
   end
 
   # GET /drivers/1
   # GET /drivers/1.json
   def show
+    redirect_to root_path, notice: 'Access not permitted.'
   end
 
   # GET /drivers/new

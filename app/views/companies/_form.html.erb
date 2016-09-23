@@ -11,40 +11,39 @@
     </div>
   <% end %>
 
-<div class="row">
-  <div class="col-xs-12 col-md-3">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12 col-md-3">
-    <div class="field">
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
       <%= f.label :phone_number %><br>
       <%= f.text_field :phone_number %>
     </div>
   </div>
-</div>
 
-<%= f.fields_for :users do |u| %>
-      <div class="field">
+  <%= f.fields_for :users do |u| %>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
         <%= u.label :email%></br>
         <%= u.text_field :email%>
       </div>
-      <div class="field">
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
         <%= u.label :password%></br>
         <%= u.password_field :password, autocomplete: "off" %>
       </div>
-    <% end %>
-
-<br>
-<div class="row">
-  <div class="col-xs-12 col-md-3">
-    <div class="actions">
-      <%= f.submit nil, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="actions">
+        <%= f.submit nil, class: 'btn btn-primary' %>
+      </div>
     </div>
   </div>
-</div>
-<br>
 <% end %>

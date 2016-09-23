@@ -11,22 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :phone_number %><br>
+      <%= f.text_field :phone_number %>
+    </div>
   </div>
   <div class="field">
     <%= f.hidden_field :company_id %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </div>
   </div>
 <% end %>
