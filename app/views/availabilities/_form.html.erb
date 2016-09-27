@@ -29,10 +29,36 @@
       <%= f.time_select :hour_end, ignore_date: true %>
     </div>
   </div>
+  <% if current_user.role != "admin" %>
   <div class="row">
     <div class="col-xs-12 col-md-3">
       <%= f.label :driver_id %><br>
       <%= f.collection_select :driver_id, current_user.company.drivers.all, :id, :first_name %>
+    </div>
+  </div>
+  <% else %>
+   <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= @availability.driver.last_name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :affected %><br>
+      <%= f.check_box :affected %>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :vehicle_type_id %><br>
+      <%= f.collection_select :vehicle_type_id, VehicleType.all, :id, :name  %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <%= f.label :comment %><br>
+      <%= f.text_area :comment  %>
     </div>
   </div>
   <br>

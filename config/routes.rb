@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vehicle_types
   resources :availabilities
   resources :drivers
   devise_for :users,

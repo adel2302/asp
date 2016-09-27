@@ -7,7 +7,7 @@ class AvailabilitiesController < ApplicationController
     if current_user.role != 'admin'
       @availabilities =  current_user.company.drivers.map {|driver| driver.availabilities}
     else
-      redirect_to root_path, notice: 'Access not permitted.'
+      redirect_to root_path, notice: 'Driver was successfully affected'
     end
   end
 
@@ -72,6 +72,6 @@ class AvailabilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def availability_params
-      params.require(:availability).permit(:date, :hour_start, :hour_end, :driver_id)
+      params.require(:availability).permit(:date, :hour_start, :hour_end, :driver_id, :vehicle_type_id, :comment, :affected)
     end
 end

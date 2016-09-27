@@ -12,6 +12,11 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-3">
+        <%= link_to 'Vehicles Type', vehicle_types_path, class: 'btn btn-primary' %> | <%= link_to 'New Vehicle Type', new_vehicle_type_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
         <%= search_form_for @q, url: root_path do |f| %>
           <%= f.label :date %>
           <%= f.date_field :date_eq %>
@@ -30,19 +35,25 @@
               <th>Company</th>
               <th>Driver</th>
               <th>phone number</th>
+              <th>Vehicle type</th>
+              <th>Comment</th>
             </tr>
           </thead>
 
           <tbody>
             <% @availabilities.each do |availability| %>
-              <tr>
-                <td><%= availability.date.strftime("%d %B %y") %></td>
-                <td><%= availability.hour_start.strftime("%H:%M") %></td>
-                <td><%= availability.hour_end.strftime("%H:%M")%></td>
-                <td><%= availability.driver.company.name %></td>
-                <td><%= availability.driver.first_name %></td>
-                <td><%= availability.driver.phone_number %></td>
-              </tr>
+              <% if availability.affected == false %>
+                <tr>
+                  <td><%= availability.date.strftime("%d %B %y") %></td>
+                  <td><%= availability.hour_start.strftime("%H:%M") %></td>
+                  <td><%= availability.hour_end.strftime("%H:%M")%></td>
+                  <td><%= availability.driver.company.name %></td>
+                  <td><%= link_to availability.driver.first_name, edit_availability_path(availability) %></td>
+                  <td><%= availability.driver.phone_number %></td>
+                  <td><%= availability.vehicle_type.name %></td>
+                  <td><%= availability.comment %></td>
+                </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>
